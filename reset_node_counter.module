@@ -16,26 +16,25 @@ function reset_node_counter_help($path, $arg) {
   }
   return $output;
 }
+
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
-function reset_node_counter_form_alter(&$form, &$form_state, $form_id) {
-  if ($form['#id'] == 'node-form') { 
-    $form['options']['reset_node_counter'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Reset node counter'),
-      '#default_value' => 0,
-    );
-    $form['#submit'][] = 'reset_node_counter_submit';
-  }
+function reset_node_counter_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['options']['reset_node_counter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Reset node counter'),
+    '#default_value' => 0,
+  );
+  $form['actions']['submit']['#submit'][] = 'reset_node_counter_submit';
 }
 
 /**
  * Additional form submit function.
  */
-function reset_node_counter_submit($node) {
-  if ($node['#post']['reset_node_counter']) {
-    reset_node_counter_reset($node['nid']['#value']);   
+function reset_node_counter_submit($form) {
+  if ($form['options']['reset_node_counter']['#value']) {
+    reset_node_counter_reset($form['nid']['#value']);   
   }
 }
 
@@ -46,5 +45,7 @@ function reset_node_counter_submit($node) {
  *   Node id of correspoding node.
  */
 function reset_node_counter_reset($nid) {
-   db_query('DELETE FROM {node_counter} WHERE nid = %d', $nid);
+  db_delete('node_counter')
+    ->condition('nid', $nid)
+    ->execute();
 } 
