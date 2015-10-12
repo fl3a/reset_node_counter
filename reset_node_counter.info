@@ -1,0 +1,4 @@
+name = "Reset node statistics"
+description = "Reset node statistics for a single node"
+core = 6.x
+dependency = statistics
