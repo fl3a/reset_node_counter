@@ -1,0 +1,5 @@
+name = "Reset node statistics VBO"
+description = "Bulk reset of node statistics counter via VBO"
+core = 7.x
+dependencies[] = statistics
+dependencies[] = admin_views

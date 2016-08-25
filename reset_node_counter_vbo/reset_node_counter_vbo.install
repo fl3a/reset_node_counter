@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Reset node statistics via VBO installation functions.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function reset_node_counter_vbo_install() {
+  // We need to run after Views module's hook_menu_alter() to fix the router
+  // item properties of overridden pages.
+  db_query("UPDATE {system} SET weight = 12 WHERE name = 'reset_node_counter_vbo'");
+}
