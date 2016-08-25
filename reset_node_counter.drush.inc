@@ -1,6 +1,6 @@
 <?php
 
-include_once('reset_node_counter.module');
+include_once('reset_node_counter.inc');
 
 /**
  * @file reset_node_counter drush implementation.

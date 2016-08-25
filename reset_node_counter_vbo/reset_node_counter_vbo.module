@@ -1,6 +1,6 @@
 <?php
 
-include_once(module_load_include('module', 'reset_node_counter', 'reset_node_counter'));
+include_once(module_load_include('inc', 'reset_node_counter'));
 
 /**
  * Implements hook_action_info().
