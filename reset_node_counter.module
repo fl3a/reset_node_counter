@@ -1,8 +1,11 @@
 <?php
 
 /**
- * @file reset_node_counter module
+ * @file 
+ * Drupal module part of reset_node_counter.
  */
+
+include_once(module_load_include('inc', 'reset_node_counter'));
 
 /**
  * Implements hook_help().
@@ -37,15 +40,3 @@ function reset_node_counter_submit($form) {
     reset_node_counter_reset($form['nid']['#value']);   
   }
 }
-
-/**
- * Callback for resetting a counter for a node.
- *
- * @param int $nid 
- *   Node id of correspoding node.
- */
-function reset_node_counter_reset($nid) {
-  db_delete('node_counter')
-    ->condition('nid', $nid)
-    ->execute();
-} 
