@@ -33,6 +33,8 @@ and[Adminstration views(admin_views)](http://drupal.org/project/admin_views).
 
 It provides a reset action and a default view based on the admin_views_node view from admin_view module which already includes this action as operation.
 
+Access the view at admin/content and use _Reset node statistics counter_ operation.
+
 ## Requirements
 
 Both modules requires statistics module (core) and it 'Count content views' setting enabled.
