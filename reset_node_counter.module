@@ -13,9 +13,22 @@ include_once(module_load_include('inc', 'reset_node_counter'));
 function reset_node_counter_help($path, $arg) {
   $output = '';  
   switch ($path) {
-    case "admin/help#reset_node_counter_":
-      $output = '<p>'.  t("Reset node counter") .'</p>';
-      break;
+    case "admin/help#reset_node_counter":
+      $filepath = dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      if (module_exists('markdown')) {
+        $filters = module_invoke('markdown', 'filter_info');
+        $info = $filters['filter_markdown'];
+    
+        if (function_exists($info['process callback'])) {
+          $output = $info['process callback']($readme, NULL);
+        }
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
   }
   return $output;
 }

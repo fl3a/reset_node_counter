@@ -3,6 +3,32 @@
 include_once(module_load_include('inc', 'reset_node_counter'));
 
 /**
+ * Implements hook_help().
+ */
+function reset_node_counter_vbo_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#reset_node_counter_vbo":
+      $filepath = realpath(dirname(__FILE__) . '/../README.md');
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      if (module_exists('markdown')) {
+        $filters = module_invoke('markdown', 'filter_info');
+        $info = $filters['filter_markdown'];
+
+        if (function_exists($info['process callback'])) {
+          $output = $info['process callback']($readme, NULL);
+        }
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
+  }
+  return $output;
+}
+
+/**
  * Implements hook_action_info().
  */
 function reset_node_counter_vbo_action_info() {
