@@ -32,7 +32,7 @@ and it wipes the entry of the corresponding node from node_counter table.
 The **Reset node counter VBO** module allows you to reset the node counter on many nodes via [Views Bulk Operations (VBO)](https://www.drupal.org/project/views_bulk_operations) 
 and[Adminstration views (admin_views)](http://drupal.org/project/admin_views).
 
-It provides a reset action and a default view based on the admin_views_node view from admin_view module which already includes this action as operation.
+It introduces a reset action and a default view based on the admin_views_node view from admin_view module which already includes this new action as operation.
 
 Access the view at admin/content and use _Reset node statistics counter_ operation.
 
