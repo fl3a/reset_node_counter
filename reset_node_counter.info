@@ -1,4 +1,4 @@
-name = "Reset node statistics"
-description = "Reset node statistics for a single node"
+name = "Reset node statistics counter"
+description = "Reset node statistics counter for a single node"
 core = 7.x
 dependencies[] = statistics
